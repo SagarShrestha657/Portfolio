@@ -63,15 +63,14 @@ const AboutSection = () => {
                 Crafting Digital Experiences
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a passionate full-stack developer with over 3 years of experience 
-                in creating modern web applications. I specialize in React, Node.js, 
-                and have a keen eye for design and user experience.
+                I'm a motivated and aspiring Software Developer with foundational knowledge in modern web 
+                technologies including React, MongoDB, Next.js, Express, Node.js, Git, GitHub, and Docker.
+                Passionate about building responsive web applications and continuously improving technical skills.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                My journey in tech started with curiosity and has evolved into a 
-                passion for solving complex problems through elegant code and 
-                intuitive design. I believe in continuous learning and staying 
-                updated with the latest technologies and best practices.
+                Seeking an entry-level opportunity to contribute to impactful projects while growing professionally.
+                I'm eager to learn new technologies and collaborate with experienced developers to create 
+                innovative solutions. Problem-solving, analytical thinking, adaptability, and eagerness to learn are my core strengths.
               </p>
               
               <motion.div
@@ -80,7 +79,7 @@ const AboutSection = () => {
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                {['React', 'Node.js', 'TypeScript', 'Python', 'MongoDB', 'PostgreSQL'].map((tech, index) => (
+                {['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'TailwindCSS'].map((tech, index) => (
                   <motion.span
                     key={tech}
                     className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"

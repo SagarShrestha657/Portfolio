@@ -17,19 +17,19 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "atib.rashid@example.com",
-      href: "mailto:atib.rashid@example.com"
+      value: "shresthasagar657@gmail.com",
+      href: "mailto:shresthasagar657@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "+91 9321427660",
+      href: "tel:+919321427660"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "New York, NY",
+      value: "Mumbai, India",
       href: "#"
     }
   ];
@@ -38,13 +38,13 @@ const ContactSection = () => {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com",
+      href: "https://github.com/SagarShrestha657",
       color: "hover:text-purple-400"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://linkedin.com/in/sagar-shrestha-6b7819311",
       color: "hover:text-blue-400"
     },
     {
@@ -97,8 +97,8 @@ const ContactSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            I'm always open to discussing new opportunities, interesting projects, 
-            or just having a chat about technology and development.
+            Let's connect and discuss opportunities to create impactful projects together.
+            I'm always eager to learn and contribute to innovative solutions.
           </motion.p>
 
           <div className="grid lg:grid-cols-2 gap-16">

@@ -49,7 +49,7 @@ const HeroSection = () => {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              Atib Rashid
+              Sagar Shrestha
             </motion.span>
           </motion.h1>
 
@@ -64,7 +64,7 @@ const HeroSection = () => {
               animate={{ y: [0, -30, 0] }}
               transition={{ duration: 2, repeat: Infinity, delay: 1 }}
             >
-              Full Stack Developer
+              Software Developer
             </motion.span>
             <motion.span
               className="mx-4 text-primary"
@@ -78,7 +78,7 @@ const HeroSection = () => {
               animate={{ y: [0, -30, 0] }}
               transition={{ duration: 2, repeat: Infinity, delay: 2 }}
             >
-              UI/UX Designer
+              Problem Solver
             </motion.span>
           </motion.div>
 
@@ -88,8 +88,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            Passionate about creating beautiful, functional, and user-centered digital experiences
-            with modern technologies and innovative solutions.
+            Motivated Software Developer with foundational knowledge in modern web technologies including
+            React, MongoDB, Next.js, Express, Node.js, Git, GitHub, and Docker.
           </motion.p>
 
           <motion.div

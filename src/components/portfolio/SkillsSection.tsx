@@ -10,31 +10,32 @@ const SkillsSection = () => {
     {
       title: "Frontend",
       skills: [
-        { name: "React", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "JavaScript", level: 95 },
-        { name: "HTML/CSS", level: 98 },
-        { name: "Tailwind CSS", level: 92 }
+        { name: "HTML", level: 90 },
+        { name: "CSS", level: 88 },
+        { name: "JavaScript", level: 85 },
+        { name: "React.js", level: 80 },
+        { name: "TailwindCSS", level: 85 },
+        { name: "Zustand", level: 75 },
+        { name: "Shadcn", level: 78 }
       ]
     },
     {
       title: "Backend",
       skills: [
-        { name: "Node.js", level: 88 },
-        { name: "Python", level: 85 },
-        { name: "Express.js", level: 90 },
-        { name: "REST APIs", level: 92 },
-        { name: "GraphQL", level: 78 }
+        { name: "Node.js", level: 80 },
+        { name: "Express.js", level: 78 },
+        { name: "Redis", level: 70 },
+        { name: "MongoDB", level: 82 }
       ]
     },
     {
-      title: "Database & Tools",
+      title: "Tools & DevOps",
       skills: [
-        { name: "MongoDB", level: 87 },
-        { name: "PostgreSQL", level: 82 },
-        { name: "Git", level: 93 },
+        { name: "Git", level: 85 },
+        { name: "GitHub", level: 85 },
         { name: "Docker", level: 75 },
-        { name: "AWS", level: 70 }
+        { name: "Vercel", level: 80 },
+        { name: "Render", level: 78 }
       ]
     }
   ];
@@ -121,7 +122,7 @@ const SkillsSection = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            {['React', 'Node.js', 'TypeScript', 'MongoDB', 'Python', 'AWS', 'Docker', 'GraphQL'].map((tech, index) => (
+            {['React.js', 'Node.js', 'JavaScript', 'MongoDB', 'Express.js', 'Docker', 'TailwindCSS', 'Zustand'].map((tech, index) => (
               <motion.div
                 key={tech}
                 className="px-4 py-2 bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-full text-sm font-medium text-foreground"

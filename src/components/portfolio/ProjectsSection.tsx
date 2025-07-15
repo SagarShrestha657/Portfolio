@@ -10,55 +10,28 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-featured e-commerce platform with user authentication, payment integration, and admin dashboard.",
+      title: "FetchMart - Real-Time Product Comparison Platform",
+      description: "A real-time product comparison tool that fetches listings from Amazon, Flipkart, Meesho, and Ajio using Puppeteer and Cheerio. Features include dark mode, wishlisting, smart search suggestions, and an AI-powered chat system.",
       image: "/placeholder.svg",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "JWT"],
+      technologies: ["React.js", "Node.js", "Express.js", "Docker", "TailwindCSS", "Zustand", "Vercel", "Render"],
       liveUrl: "#",
       githubUrl: "#",
       featured: true
     },
     {
-      title: "Task Management App",
-      description: "Collaborative task management application with real-time updates and team collaboration features.",
+      title: "Creative Threads - Artist Portfolio and Social Media Platform",
+      description: "A dedicated platform for artists to showcase their art portfolios and connect with audiences. Features responsive front-end components, back-end APIs, database operations, and authentication systems.",
       image: "/placeholder.svg",
-      technologies: ["React", "Socket.io", "Express", "PostgreSQL"],
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS", "Zustand", "Vercel", "Render"],
       liveUrl: "#",
       githubUrl: "#",
       featured: true
     },
     {
-      title: "Weather Dashboard",
-      description: "Beautiful weather dashboard with location-based forecasts and interactive charts.",
+      title: "PassVault - Password Manager App",
+      description: "A secure password manager allowing users to save, edit, delete, and manage login credentials. Features AES encryption for passwords, JWT-based authentication, a trash system with 30-day auto-deletion, and export functionality.",
       image: "/placeholder.svg",
-      technologies: ["React", "Chart.js", "Weather API", "CSS3"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false
-    },
-    {
-      title: "Social Media App",
-      description: "Social media platform with real-time messaging, posts, and user profiles.",
-      image: "/placeholder.svg",
-      technologies: ["React", "Firebase", "Material-UI", "PWA"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false
-    },
-    {
-      title: "Portfolio Website",
-      description: "Responsive portfolio website with modern animations and optimized performance.",
-      image: "/placeholder.svg",
-      technologies: ["React", "Framer Motion", "Tailwind", "Vite"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false
-    },
-    {
-      title: "Recipe Finder",
-      description: "Recipe discovery app with search functionality and nutritional information.",
-      image: "/placeholder.svg",
-      technologies: ["React", "Recipe API", "Styled Components"],
+      technologies: ["MERN Stack", "MongoDB", "Express.js", "React.js", "Node.js", "Zustand", "ShadCN", "TailwindCSS", "Vercel", "Render"],
       liveUrl: "#",
       githubUrl: "#",
       featured: false

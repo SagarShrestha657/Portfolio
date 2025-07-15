@@ -9,36 +9,12 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Senior Full Stack Developer",
-      company: "Tech Solutions Inc.",
-      location: "New York, NY",
-      period: "2022 - Present",
-      description: "Lead development of scalable web applications using React, Node.js, and cloud technologies. Mentored junior developers and improved system performance by 40%.",
-      technologies: ["React", "Node.js", "AWS", "PostgreSQL", "TypeScript"]
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Digital Innovations",
-      location: "San Francisco, CA",
-      period: "2021 - 2022",
-      description: "Developed and maintained multiple client projects, implemented CI/CD pipelines, and collaborated with design teams to create user-friendly interfaces.",
-      technologies: ["React", "Express.js", "MongoDB", "Docker", "JavaScript"]
-    },
-    {
-      title: "Frontend Developer",
-      company: "StartUp Hub",
-      location: "Austin, TX",
-      period: "2020 - 2021",
-      description: "Built responsive web applications from scratch, optimized website performance, and worked closely with UX designers to implement pixel-perfect designs.",
-      technologies: ["React", "JavaScript", "CSS3", "HTML5", "Figma"]
-    },
-    {
-      title: "Junior Web Developer",
-      company: "WebCraft Agency",
-      location: "Remote",
-      period: "2019 - 2020",
-      description: "Started my professional journey by contributing to various web projects, learning best practices, and developing a strong foundation in web technologies.",
-      technologies: ["HTML", "CSS", "JavaScript", "WordPress", "Bootstrap"]
+      title: "Software Engineer Intern",
+      company: "Sign Secure AMO Private Limited",
+      location: "Mumbai, India",
+      period: "Feb 2025 - Apr 2025",
+      description: "Contributed to major projects including HR Admin Panel and Payload CMS as part of the Product Development team. Collaborated cross-functionally, demonstrating strong problem-solving skills, technical proficiency, and commitment to project goals.",
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JavaScript", "HTML", "CSS"]
     }
   ];
 
