@@ -5,7 +5,7 @@ import { CalendarDays, MapPin, Building2 } from 'lucide-react';
 
 const ExperienceSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" });
 
   const experiences = [
     {

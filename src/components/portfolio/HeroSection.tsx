@@ -109,6 +109,10 @@ const HeroSection = () => {
               variant="outline"
               size="lg"
               className="group border-primary/20 hover:border-primary hover:bg-primary/5"
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                contactSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
               Get In Touch

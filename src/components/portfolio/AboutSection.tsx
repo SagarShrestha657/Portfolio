@@ -5,7 +5,7 @@ import { Code, Palette, Rocket, Users } from 'lucide-react';
 
 const AboutSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" });
 
   const features = [
     {

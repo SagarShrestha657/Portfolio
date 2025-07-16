@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -23,13 +23,13 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 9321427660",
-      href: "tel:+919321427660"
+      value: "+977 9862644657",
+      href: "tel:+9779862644657"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Mumbai, India",
+      value: "Kathmandu, Nepal",
       href: "#"
     }
   ];
@@ -50,24 +50,53 @@ const ContactSection = () => {
     {
       icon: Twitter,
       label: "Twitter",
-      href: "https://twitter.com",
-      color: "hover:text-cyan-400"
+      href: "#",
+      color: "hover:text-blue-400"
     }
   ];
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
-    
-    setIsSubmitting(false);
+
+    try {
+      // Simulate email sending (replace with actual API call)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you soon!",
+      });
+      
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -110,8 +139,12 @@ const ContactSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <h3 className="text-2xl font-semibold text-foreground mb-6">
-                Let's Connect
+                Let's Start a Conversation
               </h3>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                I'm always excited to work on new projects and collaborate with amazing people. 
+                Whether you have a project in mind or just want to say hello, feel free to reach out!
+              </p>
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -181,111 +214,111 @@ const ContactSection = () => {
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <h3 className="text-2xl font-semibold text-foreground mb-6">
-                Send a Message
-              </h3>
-
               <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                  >
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                      placeholder="Your full name"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                  >
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                      placeholder="your.email@example.com"
+                    />
+                  </motion.div>
+                </div>
+
                 <motion.div
-                  className="grid grid-cols-2 gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 1 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
                 >
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">
-                      First Name
-                    </label>
-                    <Input 
-                      placeholder="John" 
-                      required 
-                      className="border-border focus:border-primary"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">
-                      Last Name
-                    </label>
-                    <Input 
-                      placeholder="Doe" 
-                      required 
-                      className="border-border focus:border-primary"
-                    />
-                  </div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                    placeholder="What's this about?"
+                  />
                 </motion.div>
 
                 <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                >
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none"
+                    placeholder="Tell me about your project or just say hello!"
+                  />
+                </motion.div>
+
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 disabled:from-primary/50 disabled:to-accent/50 text-primary-foreground px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 1.2 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Email
-                  </label>
-                  <Input 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    required 
-                    className="border-border focus:border-primary"
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 1.4 }}
-                >
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Subject
-                  </label>
-                  <Input 
-                    placeholder="Project Discussion" 
-                    required 
-                    className="border-border focus:border-primary"
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 1.6 }}
-                >
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Message
-                  </label>
-                  <Textarea 
-                    placeholder="Tell me about your project..." 
-                    rows={5} 
-                    required 
-                    className="border-border focus:border-primary resize-none"
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 1.8 }}
-                >
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <motion.div
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      />
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" />
+                      Send Message
+                    </>
+                  )}
+                </motion.button>
               </form>
             </motion.div>
           </div>
