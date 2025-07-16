@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
 
 const ProjectsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px", once: false });
   const [currentProject, setCurrentProject] = useState(0);
 
   const projects = [
@@ -117,7 +117,7 @@ const ProjectsSection = () => {
                     key={`${currentProject}-${currentImageIndex}`}
                     src={project.images[currentImageIndex]}
                     alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}

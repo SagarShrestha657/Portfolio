@@ -4,38 +4,38 @@ import { useRef } from 'react';
 
 const SkillsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px", once: false });
 
   const skillCategories = [
     {
       title: "Frontend",
       skills: [
-        { name: "HTML", level: 95 },
-        { name: "CSS", level: 92 },
-        { name: "JavaScript", level: 90 },
-        { name: "React.js", level: 88 },
-        { name: "TailwindCSS", level: 90 },
-        { name: "Zustand", level: 86 },
-        { name: "Shadcn", level: 87 }
+        { name: "HTML", level: 97 },
+        { name: "CSS", level: 95 },
+        { name: "JavaScript", level: 93 },
+        { name: "React.js", level: 94 },
+        { name: "TailwindCSS", level: 92 },
+        { name: "Zustand", level: 90 },
+        { name: "Shadcn", level: 91 }
       ]
     },
     {
       title: "Backend",
       skills: [
-        { name: "Node.js", level: 88 },
-        { name: "Express.js", level: 86 },
+        { name: "Node.js", level: 93 },
+        { name: "Express.js", level: 91 },
         { name: "Redis", level: 85 },
-        { name: "MongoDB", level: 90 }
+        { name: "MongoDB", level: 94 }
       ]
     },
     {
       title: "Tools & DevOps",
       skills: [
-        { name: "Git", level: 92 },
-        { name: "GitHub", level: 90 },
+        { name: "Git", level: 96 },
+        { name: "GitHub", level: 94 },
         { name: "Docker", level: 86 },
-        { name: "Vercel", level: 88 },
-        { name: "Render", level: 85 }
+        { name: "Vercel", level: 92 },
+        { name: "Render", level: 90 }
       ]
     }
   ];
