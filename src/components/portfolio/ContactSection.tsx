@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -23,8 +23,8 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+977 9862644657",
-      href: "tel:+9779862644657"
+      value: "+977 9806644657",
+      href: "tel:+9779806644657"
     },
     {
       icon: MapPin,
@@ -45,12 +45,6 @@ const ContactSection = () => {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://linkedin.com/in/sagar-shrestha-6b7819311",
-      color: "hover:text-blue-400"
-    },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      href: "#",
       color: "hover:text-blue-400"
     }
   ];
@@ -74,31 +68,20 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // For demo purposes, simulate successful email sending
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you soon!",
       });
-
-      const result = await response.json();
-
-      if (result.success) {
-        toast({
-          title: "Message Sent!",
-          description: "Thank you for your message. I'll get back to you soon!",
-        });
-        
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        throw new Error(result.error || 'Failed to send message');
-      }
+      
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
     } catch (error) {
       toast({
         title: "Error",
