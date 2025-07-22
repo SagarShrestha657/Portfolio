@@ -159,7 +159,7 @@ const ProjectsSection = () => {
                         key={`${projectIndex}-${imageIndices[projectIndex] || 0}`}
                         src={proj.images[imageIndices[projectIndex] || 0]}
                         alt={`${proj.title} screenshot`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain bg-card/50"
                         initial={{ opacity: 0, scale: 1.1 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
@@ -268,24 +268,28 @@ const ProjectsSection = () => {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 1.5 + projectIndex * 0.2 }}
                   >
-                    <motion.button
-                      onClick={() => window.open(proj.liveUrl, '_blank')}
+                    <motion.a
+                      href={proj.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <ExternalLink className="h-4 w-4" />
                       Live Demo
-                    </motion.button>
-                    <motion.button
-                      onClick={() => window.open(proj.githubUrl, '_blank')}
+                    </motion.a>
+                    <motion.a
+                      href={proj.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-card hover:bg-secondary border border-border hover:border-primary/20 text-foreground px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Github className="h-4 w-4" />
                       Source Code
-                    </motion.button>
+                    </motion.a>
                   </motion.div>
                 </motion.div>
               </motion.div>
