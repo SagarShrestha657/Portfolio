@@ -300,28 +300,6 @@ const ProjectsSection = () => {
             ))}
           </div>
 
-          {/* Project Selection Indicator */}
-          <motion.div
-            className="flex justify-center items-center gap-4 mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-          >
-            <span className="text-sm text-muted-foreground">Current focus:</span>
-            <div className="flex gap-3">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToProject(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentProject
-                      ? 'bg-primary scale-125 shadow-lg shadow-primary/30'
-                      : 'bg-border hover:bg-primary/50 hover:scale-110'
-                  }`}
-                />
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
       </div>
 

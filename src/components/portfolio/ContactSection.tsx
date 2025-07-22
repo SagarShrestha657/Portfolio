@@ -6,12 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import Map from '@/components/Map';
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   const contactInfo = [
     {
@@ -30,7 +32,8 @@ const ContactSection = () => {
       icon: MapPin,
       label: "Location",
       value: "Mumbai, Maharashtra",
-      href: "#"
+      href: "#",
+      onClick: () => setIsMapOpen(true)
     }
   ];
 
@@ -142,10 +145,10 @@ const ContactSection = () => {
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <motion.a
+                  <motion.div
                     key={info.label}
-                    href={info.href}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/20 transition-all duration-300 group"
+                    onClick={info.onClick || (() => window.open(info.href, '_self'))}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/20 transition-all duration-300 group cursor-pointer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
@@ -163,7 +166,7 @@ const ContactSection = () => {
                         {info.value}
                       </p>
                     </div>
-                  </motion.a>
+                  </motion.div>
                 ))}
               </div>
 
@@ -320,6 +323,8 @@ const ContactSection = () => {
           </div>
         </motion.div>
       </div>
+      
+      <Map isOpen={isMapOpen} onClose={() => setIsMapOpen(false)} />
     </section>
   );
 };
