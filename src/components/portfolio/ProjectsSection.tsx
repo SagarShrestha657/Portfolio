@@ -53,42 +53,62 @@ const ProjectsSection = () => {
     }
   ];
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageIndices, setImageIndices] = useState<{[key: number]: number}>({});
 
-  // Auto-swipe images every 4 seconds
+  // Auto-swipe images every 3 seconds for all projects
   useEffect(() => {
-    const currentProjectImages = projects[currentProject].images;
-    if (currentProjectImages.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % currentProjectImages.length);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [currentProject, projects]);
+    const intervals: NodeJS.Timeout[] = [];
+    
+    projects.forEach((project, projectIndex) => {
+      if (project.images.length > 1) {
+        const interval = setInterval(() => {
+          setImageIndices(prev => ({
+            ...prev,
+            [projectIndex]: ((prev[projectIndex] || 0) + 1) % project.images.length
+          }));
+        }, 3000 + projectIndex * 500); // Stagger the auto-swipe timing
+        intervals.push(interval);
+      }
+    });
+
+    return () => {
+      intervals.forEach(interval => clearInterval(interval));
+    };
+  }, [projects]);
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length);
-    setCurrentImageIndex(0);
   };
 
   const prevProject = () => {
     setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-    setCurrentImageIndex(0);
   };
 
-  const nextImage = () => {
-    const project = projects[currentProject];
-    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+  const nextImage = (projectIndex: number) => {
+    const project = projects[projectIndex];
+    setImageIndices(prev => ({
+      ...prev,
+      [projectIndex]: ((prev[projectIndex] || 0) + 1) % project.images.length
+    }));
   };
 
-  const prevImage = () => {
-    const project = projects[currentProject];
-    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+  const prevImage = (projectIndex: number) => {
+    const project = projects[projectIndex];
+    setImageIndices(prev => ({
+      ...prev,
+      [projectIndex]: ((prev[projectIndex] || 0) - 1 + project.images.length) % project.images.length
+    }));
+  };
+
+  const setImageIndex = (projectIndex: number, imageIndex: number) => {
+    setImageIndices(prev => ({
+      ...prev,
+      [projectIndex]: imageIndex
+    }));
   };
 
   const goToProject = (index: number) => {
     setCurrentProject(index);
-    setCurrentImageIndex(0);
   };
 
   const project = projects[currentProject];
@@ -136,26 +156,26 @@ const ProjectsSection = () => {
                   <div className="relative bg-card rounded-2xl p-4 border border-border overflow-hidden group">
                     <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
                       <motion.img
-                        key={`${projectIndex}-${proj.images.length > 1 ? (projectIndex === currentProject ? currentImageIndex : 0) : 0}`}
-                        src={proj.images[proj.images.length > 1 && projectIndex === currentProject ? currentImageIndex : 0]}
+                        key={`${projectIndex}-${imageIndices[projectIndex] || 0}`}
+                        src={proj.images[imageIndices[projectIndex] || 0]}
                         alt={`${proj.title} screenshot`}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover"
                         initial={{ opacity: 0, scale: 1.1 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                       />
                       
-                      {/* Image Navigation Arrows - only show for current project */}
-                      {proj.images.length > 1 && projectIndex === currentProject && (
+                      {/* Image Navigation Arrows */}
+                      {proj.images.length > 1 && (
                         <>
                           <button
-                            onClick={prevImage}
+                            onClick={() => prevImage(projectIndex)}
                             className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-background hover:scale-110"
                           >
                             <ChevronLeft className="h-4 w-4 text-foreground" />
                           </button>
                           <button
-                            onClick={nextImage}
+                            onClick={() => nextImage(projectIndex)}
                             className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-background hover:scale-110"
                           >
                             <ChevronRight className="h-4 w-4 text-foreground" />
@@ -163,15 +183,15 @@ const ProjectsSection = () => {
                         </>
                       )}
 
-                      {/* Image Dots - only show for current project */}
-                      {proj.images.length > 1 && projectIndex === currentProject && (
+                      {/* Image Dots */}
+                      {proj.images.length > 1 && (
                         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                           {proj.images.map((_, index) => (
                             <button
                               key={index}
-                              onClick={() => setCurrentImageIndex(index)}
+                              onClick={() => setImageIndex(projectIndex, index)}
                               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                index === currentImageIndex
+                                index === (imageIndices[projectIndex] || 0)
                                   ? 'bg-primary scale-125'
                                   : 'bg-background/60 backdrop-blur-sm hover:bg-background/80'
                               }`}
@@ -248,28 +268,24 @@ const ProjectsSection = () => {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 1.5 + projectIndex * 0.2 }}
                   >
-                    <motion.a
-                      href={proj.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button
+                      onClick={() => window.open(proj.liveUrl, '_blank')}
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <ExternalLink className="h-4 w-4" />
                       Live Demo
-                    </motion.a>
-                    <motion.a
-                      href={proj.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    </motion.button>
+                    <motion.button
+                      onClick={() => window.open(proj.githubUrl, '_blank')}
                       className="inline-flex items-center gap-2 bg-card hover:bg-secondary border border-border hover:border-primary/20 text-foreground px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Github className="h-4 w-4" />
                       Source Code
-                    </motion.a>
+                    </motion.button>
                   </motion.div>
                 </motion.div>
               </motion.div>

@@ -23,13 +23,13 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+977 9806644657",
-      href: "tel:+9779806644657"
+      value: "+91 9321427660",
+      href: "tel:+919321427660"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Kathmandu, Nepal",
+      value: "Mumbai, Maharashtra",
       href: "#"
     }
   ];
@@ -182,6 +182,8 @@ const ContactSection = () => {
                     <motion.a
                       key={social.label}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`w-12 h-12 bg-card border border-border rounded-lg flex items-center justify-center text-muted-foreground transition-all duration-300 ${social.color} hover:border-primary/20 hover:scale-110`}
                       initial={{ opacity: 0, scale: 0 }}
                       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
