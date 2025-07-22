@@ -19,7 +19,7 @@ const ProjectsSection = () => {
         "/lovable-uploads/684b64a7-7c83-4f62-a6c6-ab90df421e34.png",
         "/lovable-uploads/826cda48-dab5-444a-bcb6-ebc45d79f27a.png"
       ],
-      liveUrl: "https://creative-threads-demo.vercel.app",
+      liveUrl: "https://creative-theards.vercel.app",
       githubUrl: "https://github.com/SagarShrestha657/creative-threads",
       category: "Social Media"
     },
@@ -35,7 +35,7 @@ const ProjectsSection = () => {
         "/lovable-uploads/e12ae9a3-428d-4fa0-a6e3-f050f2456d0a.png",
         "/lovable-uploads/b1adb79e-3bf2-424b-8b13-81c1509a76a9.png"
       ],
-      liveUrl: "https://fetchmart-demo.vercel.app",
+      liveUrl: "https://fetch-mart.vercel.app",
       githubUrl: "https://github.com/SagarShrestha657/fetchmart",
       category: "E-commerce"
     },
@@ -47,7 +47,7 @@ const ProjectsSection = () => {
       images: [
         "/lovable-uploads/01598cec-0dbc-444d-846d-338be849d723.png"
       ],
-      liveUrl: "https://passvault-demo.vercel.app",
+      liveUrl: "https://pass-vault-black.vercel.app",
       githubUrl: "https://github.com/SagarShrestha657/passvault",
       category: "Security"
     }
@@ -62,11 +62,15 @@ const ProjectsSection = () => {
     projects.forEach((project, projectIndex) => {
       if (project.images.length > 1) {
         const interval = setInterval(() => {
-          setImageIndices(prev => ({
-            ...prev,
-            [projectIndex]: ((prev[projectIndex] || 0) + 1) % project.images.length
-          }));
-        }, 3000 + projectIndex * 500); // Stagger the auto-swipe timing
+          setImageIndices(prev => {
+            const currentIndex = prev[projectIndex] || 0;
+            const nextIndex = (currentIndex + 1) % project.images.length;
+            return {
+              ...prev,
+              [projectIndex]: nextIndex
+            };
+          });
+        }, 4000); // Same timing for all projects
         intervals.push(interval);
       }
     });
@@ -74,7 +78,7 @@ const ProjectsSection = () => {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, [projects]);
+  }, []);
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length);
