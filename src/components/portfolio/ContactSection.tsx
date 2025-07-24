@@ -6,14 +6,35 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import Map from '@/components/Map';
+import { sendEmail } from '@/lib/email';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isMapOpen, setIsMapOpen] = useState(false);
+
+  const formSchema = z.object({
+    name: z.string().min(1, "Name is required"),
+    email: z.string().email("Invalid email address"),
+    subject: z.string().min(1, "Subject is required"),
+    message: z.string().min(1, "Message is required"),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const { register, handleSubmit, formState: { errors }, reset } = form;
 
   const contactInfo = [
     {
@@ -32,8 +53,8 @@ const ContactSection = () => {
       icon: MapPin,
       label: "Location",
       value: "Mumbai, Maharashtra",
-      href: "#",
-      onClick: () => setIsMapOpen(true)
+      href: "https://www.google.com/maps/search/?api=1&query=Matunga%20400019%20Mumbai%20Maharashtra",
+      onClick: () => window.open("https://www.google.com/maps/search/?api=1&query=Matunga%20400019%20Mumbai%20Maharashtra", "_blank")
     }
   ];
 
@@ -52,39 +73,20 @@ const ContactSection = () => {
     }
   ];
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
-
     try {
-      // For demo purposes, simulate successful email sending
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon!",
-      });
-      
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      const response = await sendEmail(data);
+
+      if (response.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. I'll get back to you soon!",
+        });
+        reset();
+      } else {
+        throw new Error(response.error as string);
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -213,7 +215,7 @@ const ContactSection = () => {
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -226,13 +228,11 @@ const ContactSection = () => {
                     <input
                       type="text"
                       id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
+                      {...register("name")}
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                       placeholder="Your full name"
                     />
+                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
                   </motion.div>
 
                   <motion.div
@@ -246,13 +246,11 @@ const ContactSection = () => {
                     <input
                       type="email"
                       id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
+                      {...register("email")}
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                       placeholder="your.email@example.com"
                     />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                   </motion.div>
                 </div>
 
@@ -267,13 +265,11 @@ const ContactSection = () => {
                   <input
                     type="text"
                     id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
+                    {...register("subject")}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                     placeholder="What's this about?"
                   />
+                  {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>}
                 </motion.div>
 
                 <motion.div
@@ -286,14 +282,12 @@ const ContactSection = () => {
                   </label>
                   <textarea
                     id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
+                    {...register("message")}
                     rows={5}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none"
                     placeholder="Tell me about your project or just say hello!"
                   />
+                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
                 </motion.div>
 
                 <motion.button
@@ -324,7 +318,6 @@ const ContactSection = () => {
         </motion.div>
       </div>
       
-      <Map isOpen={isMapOpen} onClose={() => setIsMapOpen(false)} />
     </section>
   );
 };

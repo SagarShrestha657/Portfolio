@@ -101,6 +101,14 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="group bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/lovable-uploads/Sagar Ganesh Shrestha Resume.pdf';
+                link.download = 'Sagar Ganesh Shrestha Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
             >
               <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
               Download Resume

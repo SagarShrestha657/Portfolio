@@ -16,7 +16,7 @@ export const sendEmail = async (data: EmailData) => {
       secure: false,
       auth: {
         user: 'shresthasagar657@gmail.com',
-        pass: process.env.GMAIL_APP_PASSWORD || 'your-app-password' // You'll need to set this
+        pass: process.env.GMAIL_APP_PASSWORD  // You'll need to set this
       }
     });
 
