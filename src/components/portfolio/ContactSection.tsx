@@ -2,11 +2,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { sendEmail } from '@/lib/email';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -76,21 +73,22 @@ const ContactSection = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      //const response = await sendEmail(data);
-
-      if (response.success) {
+      // Use relative path for Vercel deployment, fallback to localhost for local dev
+      const apiUrl = process.env.NODE_ENV === 'production' ? '/api/send-email' : 'http://localhost:5173/send-email';
+      const response = await axios.post(apiUrl, data);
+      if (response.data && response.data.success) {
         toast({
           title: "Message Sent!",
           description: "Thank you for your message. I'll get back to you soon!",
         });
         reset();
       } else {
-        throw new Error(response.error as string);
+        throw new Error(response.data.error || 'Failed to send message.');
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        description: error?.response?.data?.error || error.message || "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
