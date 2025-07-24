@@ -76,7 +76,7 @@ const ContactSection = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      const response = await sendEmail(data);
+      //const response = await sendEmail(data);
 
       if (response.success) {
         toast({

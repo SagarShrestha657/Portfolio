@@ -12,7 +12,7 @@ const ProjectsSection = () => {
       id: 1,
       title: "Creative Threads",
       description: "A social media platform for digital artists to showcase their artwork, connect with other creatives, and build their artistic community. Features include real-time messaging, artwork galleries, and trending artist discovery.",
-      tech: ["React.js", "Node.js", "MongoDB", "Socket.io", "Express.js"],
+      tech: ["React.js", "Node.js", "MongoDB", "Socket.io", "Express.js", "JWT", "Cloudinary"],
       images: [
         "/lovable-uploads/d0c37ebf-d4cd-40ad-8920-90c4729d9b28.png",
         "/lovable-uploads/578687a0-a596-462c-978c-58bcb7a6ff60.png",
@@ -27,7 +27,7 @@ const ProjectsSection = () => {
       id: 2,
       title: "FetchMart",
       description: "An intelligent e-commerce platform that helps users compare products across multiple platforms like Amazon, Flipkart, and more. Features AI-powered product recommendations, price comparison, and smart search functionality.",
-      tech: ["React.js", "Node.js", "Express.js", "Web Scraping", "AI Integration"],
+      tech: ["React.js", "Node.js", "Express.js", "Puppeteer", "AI Integration", "Shadcn"],
       images: [
         "/lovable-uploads/98f49a72-36ae-41d5-9d7e-c378eaa6cfd1.png",
         "/lovable-uploads/30cd12cb-e155-4284-b1e9-e1e7419742bf.png",
@@ -43,7 +43,7 @@ const ProjectsSection = () => {
       id: 3,
       title: "PassVault",
       description: "A secure password manager application that helps users safely store and manage their login credentials. Features include encrypted storage, password generation, and secure access across devices.",
-      tech: ["React.js", "Node.js", "Encryption", "JWT", "MongoDB"],
+      tech: ["React.js", "Node.js", "Express", "Encryption", "JWT", "MongoDB", "Shadcn"],
       images: [
         "/lovable-uploads/01598cec-0dbc-444d-846d-338be849d723.png"
       ],
@@ -53,12 +53,12 @@ const ProjectsSection = () => {
     }
   ];
 
-  const [imageIndices, setImageIndices] = useState<{[key: number]: number}>({});
+  const [imageIndices, setImageIndices] = useState<{ [key: number]: number }>({});
 
   // Auto-swipe images every 3 seconds for all projects
   useEffect(() => {
     const intervals: NodeJS.Timeout[] = [];
-    
+
     projects.forEach((project, projectIndex) => {
       if (project.images.length > 1) {
         const interval = setInterval(() => {
@@ -143,9 +143,8 @@ const ProjectsSection = () => {
             {projects.map((proj, projectIndex) => (
               <motion.div
                 key={proj.id}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  projectIndex % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
+                className={`grid lg:grid-cols-2 gap-12 items-center ${projectIndex % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
+                  }`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, delay: 0.4 + projectIndex * 0.2 }}
@@ -168,7 +167,7 @@ const ProjectsSection = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                       />
-                      
+
                       {/* Image Navigation Arrows */}
                       {proj.images.length > 1 && (
                         <>
@@ -194,11 +193,10 @@ const ProjectsSection = () => {
                             <button
                               key={index}
                               onClick={() => setImageIndex(projectIndex, index)}
-                              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                index === (imageIndices[projectIndex] || 0)
-                                  ? 'bg-primary scale-125'
-                                  : 'bg-background/60 backdrop-blur-sm hover:bg-background/80'
-                              }`}
+                              className={`w-2 h-2 rounded-full transition-all duration-300 ${index === (imageIndices[projectIndex] || 0)
+                                ? 'bg-primary scale-125'
+                                : 'bg-background/60 backdrop-blur-sm hover:bg-background/80'
+                                }`}
                             />
                           ))}
                         </div>

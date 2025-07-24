@@ -13,10 +13,12 @@ const SkillsSection = () => {
         { name: "HTML", level: 97 },
         { name: "CSS", level: 95 },
         { name: "JavaScript", level: 93 },
+        { name: "TypeScript", level: 87 },
         { name: "React.js", level: 94 },
         { name: "TailwindCSS", level: 92 },
         { name: "Zustand", level: 90 },
-        { name: "Shadcn", level: 91 }
+        { name: "Shadcn", level: 91 },
+        { name: "React Query", level: 87 },
       ]
     },
     {
@@ -35,7 +37,9 @@ const SkillsSection = () => {
         { name: "GitHub", level: 94 },
         { name: "Docker", level: 86 },
         { name: "Vercel", level: 92 },
-        { name: "Render", level: 90 }
+        { name: "Render", level: 90 },
+        { name: "Github Copilot", level: 98 },
+        { name: "Cursor", level: 98 },
       ]
     }
   ];
@@ -74,7 +78,7 @@ const SkillsSection = () => {
                 <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
                   {category.title}
                 </h3>
-                
+
                 <div className="space-y-4">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
@@ -82,9 +86,9 @@ const SkillsSection = () => {
                       className="space-y-2"
                       initial={{ opacity: 0, x: -20 }}
                       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ 
-                        duration: 0.5, 
-                        delay: 0.6 + categoryIndex * 0.2 + skillIndex * 0.1 
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.6 + categoryIndex * 0.2 + skillIndex * 0.1
                       }}
                     >
                       <div className="flex justify-between items-center">
@@ -95,14 +99,14 @@ const SkillsSection = () => {
                           {skill.level}%
                         </span>
                       </div>
-                      
+
                       <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
                         <motion.div
                           className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
                           initial={{ width: 0 }}
                           animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                          transition={{ 
-                            duration: 1, 
+                          transition={{
+                            duration: 1,
                             delay: 0.8 + categoryIndex * 0.2 + skillIndex * 0.1,
                             ease: [0.4, 0, 0.6, 1]
                           }}
@@ -122,28 +126,28 @@ const SkillsSection = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            {['React.js', 'Node.js', 'JavaScript', 'MongoDB', 'Express.js', 'Docker', 'TailwindCSS', 'Zustand'].map((tech, index) => (
+            {['React.js', 'Node.js', 'JavaScript','TypeScript', 'MongoDB', 'Express.js', 'Docker', 'TailwindCSS', 'Zustand'].map((tech, index) => (
               <motion.div
                 key={tech}
                 className="px-4 py-2 bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-full text-sm font-medium text-foreground"
                 initial={{ opacity: 0, scale: 0, rotate: -10 }}
-                animate={isInView ? { 
-                  opacity: 1, 
-                  scale: 1, 
-                  rotate: 0 
-                } : { 
-                  opacity: 0, 
-                  scale: 0, 
-                  rotate: -10 
+                animate={isInView ? {
+                  opacity: 1,
+                  scale: 1,
+                  rotate: 0
+                } : {
+                  opacity: 0,
+                  scale: 0,
+                  rotate: -10
                 }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: 1.4 + index * 0.1,
                   type: "spring",
                   stiffness: 100
                 }}
-                whileHover={{ 
-                  scale: 1.1, 
+                whileHover={{
+                  scale: 1.1,
                   y: -5,
                   transition: { duration: 0.2 }
                 }}

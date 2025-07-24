@@ -79,7 +79,7 @@ const AboutSection = () => {
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                {['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'TailwindCSS'].map((tech, index) => (
+                {['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript','TypeScript', 'Docker'].map((tech, index) => (
                   <motion.span
                     key={tech}
                     className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"
