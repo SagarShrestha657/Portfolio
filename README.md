@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+# My Developer Portfolio
 
-## Project info
+A personal portfolio to showcase my projects, skills, and experience as a software developer. This website is designed to be responsive, engaging, and provide a comprehensive overview of my technical capabilities.
 
-**URL**: https://lovable.dev/projects/9ff85262-dad3-4aa0-a54f-21e5de2cf57e
+## Features
 
-## How can I edit this code?
+*   **Responsive Design**: Optimized for seamless viewing across various devices (desktops, tablets, and mobile phones).
+*   **Interactive Contact Form**: A functional contact form with client-side validation using Zod and React Hook Form, capable of sending emails.
+*   **Dynamic Project Showcase**: Features a dedicated section to highlight my projects with details and links.
+*   **Skill Display**: A section illustrating my technical skills.
+*   **Animated Sections**: Engaging animations powered by Framer Motion to enhance user experience.
+*   **Resume Download**: A direct download link for my resume in the Hero section.
+*   **Google Maps Integration**: Direct link to Google Maps for location on the Contact section.
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+This project is built with a modern web development stack:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9ff85262-dad3-4aa0-a54f-21e5de2cf57e) and start prompting.
+*   **React.js**: A JavaScript library for building user interfaces.
+*   **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
+*   **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+*   **Framer Motion**: A production-ready motion library for React.
+*   **Zod**: A TypeScript-first schema declaration and validation library.
+*   **React Hook Form**: A performant, flexible, and extensible forms library for React.
+*   **Node.js**: A JavaScript runtime environment (for the email sending backend).
+*   **Nodemailer**: A module for Node.js applications to allow easy email sending.
+*   **Bun**: A fast, all-in-one JavaScript runtime.
+*   **Vite**: A fast development build tool for modern web projects.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Installation
 
-**Use your preferred IDE**
+Follow these steps to set up and run the project locally:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1.  **Clone the repository**:
+    ```bash
+    git clone <YOUR_REPOSITORY_URL>
+    ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2.  **Navigate to the project directory**:
+    ```bash
+    cd portfolio
+    ```
 
-Follow these steps:
+3.  **Install dependencies using Bun**:
+    ```bash
+    bun install
+    ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+4.  **Start the development server**:
+    ```bash
+    bun run dev
+    ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Environment Variables
 
-# Step 3: Install the necessary dependencies.
-npm i
+To enable the contact form's email sending functionality, you need to set up a Gmail App Password.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1.  Create a `.env` file in the root directory of the project.
+2.  Add your Gmail App Password to the `.env` file:
+    ```
+    GMAIL_APP_PASSWORD=your_gmail_app_password
+    ```
+    *   **Note**: You can learn how to generate a Gmail App Password here: [https://support.google.com/accounts/answer/185833?hl=en](https://support.google.com/accounts/answer/185833?hl=en)
 
-**Edit a file directly in GitHub**
+## Usage
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Once the development server is running, open your web browser and navigate to the address provided by Vite (usually `http://localhost:5173` or `http://localhost:8080`).
 
-**Use GitHub Codespaces**
+You can then explore the different sections of the portfolio, interact with the contact form, and view my projects and skills.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Contact
 
-## What technologies are used for this project?
+Feel free to reach out to me through:
 
-This project is built with:
+*   **Email**: shresthasagar657@gmail.com
+*   **LinkedIn**: [Sagar Shrestha](https://linkedin.com/in/sagar-shrestha-6b7819311)
+*   **GitHub**: [SagarShrestha657](https://github.com/SagarShrestha657)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## License
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/9ff85262-dad3-4aa0-a54f-21e5de2cf57e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is licensed under the MIT License.
