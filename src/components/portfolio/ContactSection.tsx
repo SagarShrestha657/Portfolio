@@ -73,8 +73,7 @@ const ContactSection = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      // Use relative path for Vercel deployment, fallback to localhost for local dev
-      const apiUrl = process.env.NODE_ENV === 'production' ? '/api/send-email' : 'http://localhost:5173/send-email';
+      const apiUrl = '/api/send-email';
       const response = await axios.post(apiUrl, data);
       if (response.data && response.data.success) {
         toast({

@@ -2,21 +2,21 @@ import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' }
+];
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, top: 0 });
   const navContainerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<{ [key: string]: HTMLSpanElement | null }>({});
-
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +53,7 @@ const Navigation = () => {
         top: activeTextElementRect.top - navContainerRect.top + activeTextElementRect.height + 4, // 4px below text
       });
     }
-  }, [activeSection, navItems]);
+  }, [activeSection]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

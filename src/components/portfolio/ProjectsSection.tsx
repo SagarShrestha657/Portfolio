@@ -10,6 +10,48 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
+      title: "Aureo",
+      description: "A QR-based ordering and POS platform for restaurants, cafes, and hotels, allowing guests to scan, browse menus, and place orders directly from their table or room. It centralizes all orders into one dashboard, helping staff manage operations faster and with fewer errors. Built as a scalable SaaS application with real-time updates and role-based access.",
+      tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Express.js", "AI Integration"],
+      images: [
+        "/aureo/Screenshot 2026-04-30 085015.png",
+        "/aureo/Screenshot 2026-04-30 085051.png",
+        "/aureo/Screenshot 2026-04-30 085117.png",
+        "/aureo/Screenshot 2026-04-30 085147.png",
+        "/aureo/Screenshot 2026-04-30 085216.png",
+        "/aureo/Screenshot 2026-04-30 085245.png",
+        "/aureo/Screenshot 2026-04-30 085309.png",
+        "/aureo/Screenshot 2026-04-30 085347.png",
+        "/aureo/Screenshot 2026-04-30 085449.png"
+      ],
+      liveUrl: "https://aureo.it.com",
+      githubUrl: "https://github.com/SagarShrestha657/Golden-Menu-AR",
+      category: "SaaS"
+    },
+    {
+      id: 2,
+      title: "VendoraX",
+      description: "A scalable SaaS-based inventory and POS platform that enables real-time stock tracking, centralized order management, and seamless operations across multiple businesses. It includes analytics dashboards, role-based access control, and multi-tenant support for managing multiple organizations efficiently.",
+      tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Express.js"],
+      images: [
+        "/vendorax/dashboard.png",
+        "/vendorax/pos.png",
+        "/vendorax/analysis.png",
+        "/vendorax/product.png",
+        "/vendorax/deadstock.png",
+        "/vendorax/restock.png",
+        "/vendorax/reorder.png",
+        "/vendorax/history.png",
+        "/vendorax/team.png",
+        "/vendorax/organisation.png",
+        "/vendorax/advance table.png"
+      ],
+      liveUrl: "https://www.vendorax.online",
+      githubUrl: "https://github.com/SagarShrestha657/VendoraX",
+      category: "SaaS"
+    },
+    {
+      id: 3,
       title: "Creative Threads",
       description: "A social media platform for digital artists to showcase their artwork, connect with other creatives, and build their artistic community. Features include real-time messaging, artwork galleries, and trending artist discovery.",
       tech: ["React.js", "Node.js", "MongoDB", "Socket.io", "Express.js", "JWT", "Cloudinary"],
@@ -24,7 +66,7 @@ const ProjectsSection = () => {
       category: "Social Media"
     },
     {
-      id: 2,
+      id: 4,
       title: "FetchMart",
       description: "An intelligent e-commerce platform that helps users compare products across multiple platforms like Amazon, Flipkart, and more. Features AI-powered product recommendations, price comparison, and smart search functionality.",
       tech: ["React.js", "Node.js", "Express.js", "Puppeteer", "AI Integration", "Shadcn"],
@@ -40,7 +82,7 @@ const ProjectsSection = () => {
       category: "E-commerce"
     },
     {
-      id: 3,
+      id: 5,
       title: "PassVault",
       description: "A secure password manager application that helps users safely store and manage their login credentials. Features include encrypted storage, password generation, and secure access across devices.",
       tech: ["React.js", "Node.js", "Express", "Encryption", "JWT", "MongoDB", "Shadcn"],
@@ -57,7 +99,7 @@ const ProjectsSection = () => {
 
   // Auto-swipe images every 3 seconds for all projects
   useEffect(() => {
-    const intervals: NodeJS.Timeout[] = [];
+    const intervals: ReturnType<typeof setInterval>[] = [];
 
     projects.forEach((project, projectIndex) => {
       if (project.images.length > 1) {

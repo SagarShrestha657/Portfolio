@@ -91,13 +91,8 @@ const SkillsSection = () => {
                         delay: 0.6 + categoryIndex * 0.2 + skillIndex * 0.1
                       }}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">
-                          {skill.name}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          {skill.level}%
-                        </span>
+                      <div className="text-sm font-medium text-foreground">
+                        {skill.name}
                       </div>
 
                       <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
