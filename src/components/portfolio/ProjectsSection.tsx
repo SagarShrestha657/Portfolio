@@ -10,6 +10,26 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
+      title: "Sawari",
+      description: "A real-time bus tracking platform for Nepal that lets passengers see live bus locations on an interactive map before they even step outside. Drivers broadcast their GPS position from the web or app over MQTT with protobuf encoding, and passengers receive live updates via Socket.IO — all with sub-second latency. Built with a focus on reliability, low data usage, and mobile-first experience.",
+      tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Express.js", "MQTT", "Socket.IO", "Protobuf", "Redis", "JWT"],
+      images: [
+        "/sawari/Screenshot 2026-06-30 143822.png",
+        "/sawari/Screenshot 2026-06-30 143902.png",
+        "/sawari/Screenshot 2026-06-30 143959.png",
+        "/sawari/Screenshot 2026-06-30 144109.png",
+        "/sawari/Screenshot 2026-06-30 144219.png",
+        "/sawari/Screenshot 2026-06-30 144247.png",
+        "/sawari/Screenshot 2026-06-30 144317.png",
+        "/sawari/Screenshot 2026-06-30 144352.png",
+        "/sawari/Screenshot 2026-06-30 144446.png"
+      ],
+      liveUrl: "https://sawari.live",
+      githubUrl: "https://github.com/SagarShrestha657/sawari",
+      category: "Real-time App"
+    },
+    {
+      id: 2,
       title: "Aureo",
       description: "A QR-based ordering and POS platform for restaurants, cafes, and hotels, allowing guests to scan, browse menus, and place orders directly from their table or room. It centralizes all orders into one dashboard, helping staff manage operations faster and with fewer errors. Built as a scalable SaaS application with real-time updates and role-based access.",
       tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Express.js", "AI Integration"],
@@ -29,7 +49,7 @@ const ProjectsSection = () => {
       category: "SaaS"
     },
     {
-      id: 2,
+      id: 3,
       title: "VendoraX",
       description: "A scalable SaaS-based inventory and POS platform that enables real-time stock tracking, centralized order management, and seamless operations across multiple businesses. It includes analytics dashboards, role-based access control, and multi-tenant support for managing multiple organizations efficiently.",
       tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Express.js"],
@@ -51,7 +71,7 @@ const ProjectsSection = () => {
       category: "SaaS"
     },
     {
-      id: 3,
+      id: 4,
       title: "Creative Threads",
       description: "A social media platform for digital artists to showcase their artwork, connect with other creatives, and build their artistic community. Features include real-time messaging, artwork galleries, and trending artist discovery.",
       tech: ["React.js", "Node.js", "MongoDB", "Socket.io", "Express.js", "JWT", "Cloudinary"],
@@ -66,7 +86,7 @@ const ProjectsSection = () => {
       category: "Social Media"
     },
     {
-      id: 4,
+      id: 5,
       title: "FetchMart",
       description: "An intelligent e-commerce platform that helps users compare products across multiple platforms like Amazon, Flipkart, and more. Features AI-powered product recommendations, price comparison, and smart search functionality.",
       tech: ["React.js", "Node.js", "Express.js", "Puppeteer", "AI Integration", "Shadcn"],
@@ -82,7 +102,7 @@ const ProjectsSection = () => {
       category: "E-commerce"
     },
     {
-      id: 5,
+      id: 6,
       title: "PassVault",
       description: "A secure password manager application that helps users safely store and manage their login credentials. Features include encrypted storage, password generation, and secure access across devices.",
       tech: ["React.js", "Node.js", "Express", "Encryption", "JWT", "MongoDB", "Shadcn"],

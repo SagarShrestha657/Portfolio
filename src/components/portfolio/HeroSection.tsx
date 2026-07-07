@@ -89,7 +89,7 @@ const HeroSection = () => {
             transition={{ delay: 0.8 }}
           >
             Motivated Software Developer with foundational knowledge in modern web technologies including
-            React, MongoDB, Next.js, Express, Node.js, Git, GitHub, and Docker.
+            React, MongoDB, Express, Node.js, Git, GitHub, and cloudflare.
           </motion.p>
 
           <motion.div
